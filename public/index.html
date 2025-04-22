@@ -253,7 +253,7 @@
         auth.onAuthStateChanged(user => {
             if (user) {
                 // Check if the user is in the allowed list
-                database.ref('allowedUsers').child(user.email.replace('.', ',')).once('value')
+                database.ref('allowedUsers').child(user.email.replace(/\./g, ',')).once('value')
                 .then(snapshot => {
                     if (!snapshot.exists()) {
                         // Not authorized
